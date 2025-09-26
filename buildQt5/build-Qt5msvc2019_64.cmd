@@ -5,10 +5,10 @@
 SET QT_VERSION=5.15.17
 
 :: 设置MSVC版本代号
-SET MSVC_VERSION=msvc2017_64
+SET MSVC_VERSION=msvc2019_64
 
-:: 设置MSVC2017环境
-CALL "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+:: 设置MSVC2019环境
+CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
 
 :: 设置jom和Perl
 SET PATH=D:\a\buildQt\jom;D:\a\buildQt\Strawberry\c\bin;D:\a\buildQt\Strawberry\perl\site\bin;D:\a\buildQt\Strawberry\perl\bin;%PATH%
@@ -25,7 +25,7 @@ SET SRC_QT="%QT_PATH%\%QT_VERSION%\qt-everywhere-src-%QT_VERSION%"
 SET PATH=%SRC_QT%\qtbase\bin;%SRC_QT%\gnuwin32\bin;%PATH%
 
 :: 设置安装文件夹目录
-SET INSTALL_DIR="%QT_PATH%\%QT_VERSION%-shared\%MSVC_VERSION%"
+SET INSTALL_DIR="%QT_PATH%\%QT_VERSION%-static\%MSVC_VERSION%"
 
 :: 设置build文件夹目录
 SET BUILD_DIR="%QT_PATH%\%QT_VERSION%\build-%MSVC_VERSION%"
@@ -36,7 +36,7 @@ rmdir /s /q "%BUILD_DIR%"
 mkdir "%BUILD_DIR%" && cd /d "%BUILD_DIR%"
 
 :: configure
-call %SRC_QT%\configure.bat -shared -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-msvc
+call %SRC_QT%\configure.bat -static -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-msvc
 
 :: 编译、安装
 jom

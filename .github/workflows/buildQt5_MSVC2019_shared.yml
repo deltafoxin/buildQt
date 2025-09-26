@@ -1,4 +1,4 @@
-name: build_Qt5.15.17_msvc2017_shared
+name: build_Qt5.15.17_msvc2019_shared
 
 on: workflow_dispatch
 #on: [push, pull_request]
@@ -6,7 +6,7 @@ on: workflow_dispatch
 env:
   QT_VERSION: 5.15.17
   QT_VERSION2: 5.15
-  FILE_NAME: shared-Release_msvc2017_64
+  FILE_NAME: shared-Release_msvc2019_64
 
 jobs:
   windows_msvc_shared_release:
@@ -42,7 +42,7 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
       with:
-        vs-version: '[15.0,16.0)'   # VS 2017
+        vs-version: '[16.0,17.0)'   # VS 2019
         msbuild-architecture: x64
 
     # 安装vsdevenv
@@ -72,7 +72,7 @@ jobs:
         unzip -q qt-everywhere-opensource-src.zip -d ./${{env.QT_VERSION}}
 
         # 调用编译脚本
-        cmd.exe /c "call `"D:\a\buildQt\buildQt\buildQt5\build-Qt5msvc2017_64.cmd`""
+        cmd.exe /c "call `"D:\a\buildQt\buildQt\buildQt5\build-Qt5msvc2019_64.cmd`""
 
     # 打包
     - name: Package binaries
