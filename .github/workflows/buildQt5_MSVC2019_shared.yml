@@ -42,7 +42,7 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
       with:
-        vs-version: '2019'  # VS 2019
+        vs-version: '[16,17)'   # VS 2019
         msbuild-architecture: x64
 
     # 安装vsdevenv
