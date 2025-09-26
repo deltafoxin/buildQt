@@ -1,4 +1,4 @@
-name: build_Qt5.15.17_msvc2017
+name: build_Qt5.15.17_msvc2017_shared
 
 on: workflow_dispatch
 #on: [push, pull_request]
@@ -42,6 +42,7 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v2
       with:
+        vs-version: '[15.0,16.0)'   # VS 2017
         msbuild-architecture: x64
 
     # 安装vsdevenv
